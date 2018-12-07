@@ -1,5 +1,7 @@
-/archive_git/gears/m/mkimage.git                             git@github.com:altlinux/mkimage     sisyphus:master
-http://git.altlinux.org/people/ldv/packages/gear.git         git@github.com:altlinux/gear        master:master
-http://git.altlinux.org/people/ldv/packages/girar.git        git@github.com:altlinux/girar       master:master
-http://git.altlinux.org/people/ldv/packages/hasher.git       git@github.com:altlinux/hasher      master:master
-http://git.altlinux.org/people/ldv/packages/hasher-priv.git  git@github.com:altlinux/hasher-priv master:master
+/archive_git/gears/m/mkimage.git                                  git@github.com:altlinux/mkimage         sisyphus:master
+http://git.altlinux.org/people/ldv/packages/gear.git              git@github.com:altlinux/gear            master:master
+http://git.altlinux.org/people/ldv/packages/girar.git             git@github.com:altlinux/girar           master:master
+http://git.altlinux.org/people/ldv/packages/hasher.git            git@github.com:altlinux/hasher          master:master
+http://git.altlinux.org/people/ldv/packages/hasher-priv.git       git@github.com:altlinux/hasher-priv     master:master
+http://git.altlinux.org/people/legion/packages/libshell.git       git@github.com:altlinux/libshell        master:master
+http://git.altlinux.org/people/legion/packages/make-initrd.git    git@github.com:altlinux/make-initrd     master:master
