@@ -1,0 +1,56 @@
+# remote: error: object c4158e635633220f574446378f408b8f8ffbf46d: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/0.0.2
+
+# remote: error: object abc99d85e813102b0b62d1612449c3605a6bfc55: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/0.1
+
+# remote: error: object 64b54aa039868a1b724f8e73fbed86f098a0467c: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/0.1.2
+
+# remote: error: object f1941e5a29b5a069f96431b36bdd4f0245ceac78: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.0-alt1
+
+# remote: error: object cbd077102cd57afcd7e6e2aef07f7e02439e5a6e: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.0.1-alt1
+
+# remote: error: object a1cd634128caee4953c0ace687e7a560477afc37: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.0.2-alt1
+
+# remote: error: object e8879cd885295d9390a0e3019f10c9bffe0bcd3e: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.0.3-alt1
+
+# remote: error: object 9e3303fcc87e4beecd1776047b5db2b9cfc265b6: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.0.4-alt1
+
+# remote: error: object 630086995b3376c96eb19db78b5090b290c0e630: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.0.5-alt1
+
+# remote: error: object f4e17b47849e9f1f42daf0388efc2028e572821a: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.1.0-alt1
+
+# remote: error: object b3833540ade1b778634e8d4a8d16e7a06f99715c: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.2.0-alt1
+
+# remote: error: object 19e2e21e0f8f73e9b2e17e89a1bd45d0cdc97e29: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.2.1-alt1
+
+# remote: error: object b7a07947155b8dd9e7ba5d4305bffae74a780bd3: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.2.2-alt1
+
+# remote: error: object fce18e0d7bad8fc670602b14174447d9dec8c069: missingSpaceBeforeDate: invalid author/committer line - missing space before date        
+# remote: fatal: fsck error in packed object        
+tag:refs/tags/1.2.3-alt1
+

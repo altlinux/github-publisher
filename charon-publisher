@@ -1,0 +1,113 @@
+#!/bin/sh -efu
+
+. shell-error
+
+export LANG=C
+
+log()
+{
+	printf '%s] %s ' "$(date +'%Y-%m-%d %H:%M:%S.%N')" "$PROG"
+	printf -- "$@"
+	printf '\n'
+}
+
+cwd="$(readlink -ev "$0")"
+cwd="${0%/*}"
+
+cd "$cwd"
+
+rc=0
+
+while read -r src dst refspecs; do
+	name="${src##*/}"
+	name="${name%.git}"
+
+	log "publish %s" "$name"
+
+	for try in 1 2; do
+		if [ -d "cache/$name" ]; then
+			ref="$(git --git-dir="cache/$name" remote get-url origin)"
+
+			if [ "$src" != "$ref" ]; then
+				rm -rf -- "cache/$name"
+				continue
+			fi
+
+			if [ -n "${src##/*}" ]; then
+				log 'fetch all from %s' "$name"
+				git --git-dir="cache/$name" fetch -q --all --no-recurse-submodules
+			fi
+		else
+			log 'clone %s' "$src"
+			git clone -q --mirror --shared "$src" "cache/$name"
+		fi
+		break
+	done
+
+	remote_tags='tmp/remote.tags'
+	local_tags='tmp/local.tags'
+
+	git --git-dir='' ls-remote --exit-code --tags "$dst" >tmp/output 2>&1 || {
+		rc="$?"
+
+		if [ "$rc" != 2 ]; then
+			log 'failed to get remote tags'
+			log 'command failed (rc=%s): %s' "$rc" "git --git-dir='' ls-remote --tags '$dst'"
+			cat tmp/output
+			rc=1
+			continue
+		fi
+	}
+	sed -n \
+		-e '/^.*\^{}$/d' \
+		-e 's/^[^[:space:]]\+[[:space:]]\(.*\)$/\1/p' \
+	tmp/output > "$remote_tags"
+
+	for refspec in $refspecs; do
+		git --git-dir="cache/$name" tag --list --merged "${refspec%:*}" |
+			sed -e 's,^.*$,refs/tags/&,' |
+		while read -r tag; do
+			[ ! -s "etc/$name.blacklist" ] ||
+				! grep -qxF -e "tag:$tag" "etc/$name.blacklist" ||
+				continue
+
+			printf '%s\n' "$tag"
+		done
+	done > "$local_tags"
+
+	sort -uo "$remote_tags" "$remote_tags"
+	sort -uo "$local_tags" "$local_tags"
+
+	join -v2 -j1 "$remote_tags" "$local_tags" |
+	while read -r tag; do
+		if git --git-dir="cache/$name" push -q "$dst" "$tag" >tmp/git-push.log 2>&1; then
+			log 'tag %s pushed' "$tag"
+			continue
+		else
+			log 'failed to push tag %s' "$tag"
+		fi
+
+		if grep -qsE -e '^remote: (error|fatal): ' tmp/git-push.log; then
+			{
+				sed -n -e 's/^remote: /# &/p' tmp/git-push.log
+				printf 'tag:%s\n\n' "$tag"
+			} >> "etc/$name.blacklist"
+		fi
+	done
+
+	for refspec in $refspecs; do
+		log 'push %s' "$refspec"
+		git --git-dir="cache/$name" push -q "$dst" "$refspec" ||
+			rc=1
+	done
+
+done < etc/config
+
+rm -rf -- \
+	tmp/git-push.log \
+	tmp/local.tags \
+	tmp/remote.tags \
+	tmp/output \
+	||:
+
+exit $rc
